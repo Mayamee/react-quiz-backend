@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "question": "question1?",
+    "rightAnwerId": 2,
+    "answers": [
+      {
+        "id": 1,
+        "text": "answer1"
+      },
+      {
+        "id": 2,
+        "text": "answer2"
+      },
+      {
+        "id": 3,
+        "text": "answer3"
+      },
+      {
+        "id": 4,
+        "text": "answer4"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "question2?",
+    "rightAnwerId": 3,
+    "answers": [
+      {
+        "id": 1,
+        "text": "answer1"
+      },
+      {
+        "id": 2,
+        "text": "answer2"
+      },
+      {
+        "id": 3,
+        "text": "answer3"
+      },
+      {
+        "id": 4,
+        "text": "answer4"
+      }
+    ]
+  }
+]
