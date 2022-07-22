@@ -7,7 +7,6 @@ import { catchErrorMiddleware } from "./middleware/catchError.middleware.mjs";
 dotenv.config();
 const app = express();
 const PORT = process.env.SERVER_PORT || 5050;
-
 app.use(loggerMiddleware);
 app.use(cors());
 app.use(express.json());
