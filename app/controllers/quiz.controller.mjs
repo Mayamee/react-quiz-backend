@@ -10,6 +10,20 @@ class QuizController {
       res.status(500).json({ status: 500, data: "Something went wrong" });
     }
   }
+  async getQuizByHash(req, res) {
+    try {
+      const hashsum = req.params.hashsum;
+      const quiz = await db.query("SELECT * FROM quizes WHERE hashsum = $1", [
+        hashsum,
+      ]);
+      if (quiz.rowCount === 0) {
+        return res.status(404).json({ status: 404, data: "Quiz not found" });
+      }
+      res.status(200).json({ status: 200, data: quiz.rows[0] });
+    } catch (error) {
+      res.status(500).json({ status: 500, data: "Something went wrong" });
+    }
+  }
   async saveQuiz(req, res) {
     try {
       const body = req.body;
