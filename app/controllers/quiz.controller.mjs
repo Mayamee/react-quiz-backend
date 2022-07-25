@@ -2,7 +2,7 @@ import db from "../database/connect.mjs";
 import MD5 from "crypto-js/md5.js";
 
 class QuizController {
-  async getQuizzes(req, res) {
+  async getQuizzes(_req, res) {
     try {
       const quizzes = await db.query("SELECT * FROM quizes");
       res.status(200).json({ status: 200, data: quizzes.rows });
