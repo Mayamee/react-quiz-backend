@@ -7,15 +7,12 @@ export function loggerMiddleware(req, _res, next) {
   if (fs.existsSync(path.resolve("logs", "access.log"))) {
     fs.appendFile(path.resolve("logs", "access.log"), logPattern, (err) => {
       if (err) {
-        return console.log(err);
+        console.error(err);
       }
     });
   } else {
-    fs.writeFile(path.resolve("logs", "access.log"), logPattern, (err) => {
-      if (err) {
-        return console.log(err);
-      }
-    });
+    fs.mkdirSync(path.resolve("logs"));
+    fs.writeFileSync(path.resolve("logs", "access.log"), logPattern);
   }
   next();
 }
