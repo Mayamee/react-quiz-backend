@@ -7,13 +7,15 @@ export default function writeLogToFile(pathToFile = [], logPattern = "") {
   }
   try {
     const fileName = pathToFile.pop();
-    const isFileExists = fs.existsSync(path.resolve(...pathToFile, fileName));
+    const filePath = path.resolve(...pathToFile, fileName);
+    const isFileExists = fs.existsSync(filePath);
     if (isFileExists) {
-      fs.appendFileSync(path.resolve(...pathToFile, fileName), logPattern);
+      fs.appendFileSync(filePath, logPattern);
     } else {
       fs.mkdirSync(path.resolve(...pathToFile), { recursive: true });
-      fs.writeFileSync(path.resolve(...pathToFile, fileName), logPattern);
+      fs.writeFileSync(filePath, logPattern);
     }
+    console.log({ filePath, isFileExists });
   } catch (error) {
     console.error(error);
   }

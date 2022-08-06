@@ -1,15 +1,16 @@
 import QuizModel from "../models/QuizModel.js";
 
 class QuizController {
-  async getQuizzes(_req, res, next) {
+  async getQuizes(_req, res, next) {
     try {
-      const quizzes = await db.query("SELECT * FROM quizes");
-      return res.status(200).json({ status: 200, data: quizzes.rows });
+      const quizes = await QuizModel.find();
+      // console.log(quizes);
+      res.status(200).json({ status: 200, data: quizes });
     } catch (error) {
       next(error);
     }
   }
-  async saveQuiz(req, res, next) {
+  async addQuiz(req, res, next) {
     try {
       const body = req.body;
       if (Object.keys(body).length === 0) {
