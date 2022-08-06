@@ -1,11 +1,9 @@
-import QuizModel from "../models/QuizModel.js";
-
+import QuizService from "../services/quiz.service.js";
 class QuizController {
   async getQuizes(_req, res, next) {
     try {
-      const quizes = await QuizModel.find();
-      // console.log(quizes);
-      res.status(200).json({ status: 200, data: quizes });
+      await QuizService.getQuizes();
+      return res.status(200).json({ status: 200, data: quizes });
     } catch (error) {
       next(error);
     }
@@ -13,14 +11,7 @@ class QuizController {
   async addQuiz(req, res, next) {
     try {
       const body = req.body;
-      if (Object.keys(body).length === 0) {
-        return res.status(400).json({ status: 400, data: "No data provided" });
-      }
-      const query = await db.query(
-        "INSERT INTO quizes (info, hashsum) VALUES ($1, $2) RETURNING *",
-        [JSON.stringify(body), MD5(JSON.stringify(body)).toString()]
-      );
-      res.status(200).json({ data: query.rows[0].hashsum });
+      await QuizService.addQuiz(body);
     } catch (error) {
       next(error);
     }

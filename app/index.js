@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import { loggerMiddleware } from "./middleware/logger.middleware.js";
-import quizRouter from "./routes/router.js";
+import quizRouter from "./routes/quiz.router.js";
 import { catchErrorMiddleware } from "./middleware/catchError.middleware.js";
 dotenv.config();
 const app = express();
@@ -25,7 +25,7 @@ app.use("*", (_req, res) => {
 app.use(catchErrorMiddleware);
 
 main().catch((err) => {
-  console.log(err);
+  console.error(err);
 });
 
 async function main() {

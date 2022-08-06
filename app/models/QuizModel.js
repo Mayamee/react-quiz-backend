@@ -2,6 +2,8 @@ import pkg from "mongoose";
 const { Schema, model } = pkg;
 
 const QuizSchema = new Schema({
+  title: { type: String, required: true },
+  uuid: { type: String, required: true },
   body: [
     {
       id: { type: Number, required: true, unique: true },
