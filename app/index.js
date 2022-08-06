@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 5050;
 const ORIGINS = process.env.ORIGINS ? process.env.ORIGINS.split(" ") : "*";
 
-// app.use(loggerMiddleware);
+app.use(loggerMiddleware);
 app.use(
   cors({
     origin: ORIGINS,
