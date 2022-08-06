@@ -1,4 +1,4 @@
-import { writeToErrorLog } from "../lib/fileWrite.mjs";
+import { writeToErrorLog } from "../lib/fileWrite.js";
 
 export const catchErrorMiddleware = (err, req, res, next) => {
   if (err) {

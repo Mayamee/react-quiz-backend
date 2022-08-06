@@ -1,13 +1,27 @@
-import db from "../database/connect.mjs";
-import MD5 from "crypto-js/md5.js";
+import QuizModel from "../models/QuizModel.js";
 
 class QuizController {
-  async getQuizzes(_req, res) {
+  async getQuizzes(_req, res, next) {
     try {
       const quizzes = await db.query("SELECT * FROM quizes");
-      res.status(200).json({ status: 200, data: quizzes.rows });
+      return res.status(200).json({ status: 200, data: quizzes.rows });
     } catch (error) {
-      res.status(500).json({ status: 500, data: "Something went wrong" });
+      next(error);
+    }
+  }
+  async saveQuiz(req, res, next) {
+    try {
+      const body = req.body;
+      if (Object.keys(body).length === 0) {
+        return res.status(400).json({ status: 400, data: "No data provided" });
+      }
+      const query = await db.query(
+        "INSERT INTO quizes (info, hashsum) VALUES ($1, $2) RETURNING *",
+        [JSON.stringify(body), MD5(JSON.stringify(body)).toString()]
+      );
+      res.status(200).json({ data: query.rows[0].hashsum });
+    } catch (error) {
+      next(error);
     }
   }
   async getQuizByHash(req, res) {
@@ -24,25 +38,7 @@ class QuizController {
       res.status(500).json({ status: 500, data: "Something went wrong" });
     }
   }
-  async saveQuiz(req, res) {
-    try {
-      const body = req.body;
-      if (Object.keys(body).length === 0) {
-        return res.status(400).json({ status: 400, data: "No data provided" });
-      }
-      const query = await db.query(
-        "INSERT INTO quizes (info, hashsum) VALUES ($1, $2) RETURNING *",
-        [JSON.stringify(body), MD5(JSON.stringify(body)).toString()]
-      );
-      res.status(200).json({ data: query.rows[0].hashsum });
-    } catch (error) {
-      if (error.code === "23505") {
-        res.status(400).json({ status: 400, data: "Quiz already exists" });
-      } else {
-        res.status(500).json({ status: 500, data: "Something went wrong" });
-      }
-    }
-  }
+
   async updateQuizByHash(req, res) {
     try {
       const body = req.body;
