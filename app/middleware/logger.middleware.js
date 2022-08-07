@@ -5,6 +5,5 @@ export function loggerMiddleware(req, _res, next) {
     req.ip
   } ${req.headers["user-agent"]}\n`;
   writeToAccessLog(logPattern);
-
   next();
 }
