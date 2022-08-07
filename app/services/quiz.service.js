@@ -1,5 +1,6 @@
 import QuizModel from "../models/QuizModel.js";
 import QuizDTO from "../dtos/QuizDTO.js";
+import ApiError from "../error/ApiError.js";
 
 class QuizService {
   async getQuizes() {
@@ -13,7 +14,13 @@ class QuizService {
     });
     return await quiz.save();
   }
-  async getQuizById() {}
+  async getQuizById(id) {
+    const quiz = await QuizModel.findById(id);
+    if (quiz === null) {
+      throw ApiError.NotFound("Quiz not found");
+    }
+    return new QuizDTO(quiz);
+  }
   async updateQuizByHash() {}
   async deleteQuizByHash() {}
 }
