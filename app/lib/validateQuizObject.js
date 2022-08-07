@@ -2,7 +2,6 @@ import ApiError from "../error/ApiError.js";
 
 export default function validateQuizObject(quizObject) {
   const { title, body } = quizObject;
-  console.log({ title, body });
   if (!title) {
     throw ApiError.ValidationError("No title provided");
   }

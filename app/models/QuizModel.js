@@ -1,22 +1,25 @@
 import pkg from "mongoose";
-const { Schema, model } = pkg;
+const { Schema, model, Types } = pkg;
 
-const QuizSchema = new Schema({
-  title: { type: String, required: true },
-  uuid: { type: String, required: true },
-  body: [
-    {
-      id: { type: Number, required: true, unique: true },
-      question: { type: String, required: true },
-      rightAnswerId: { type: Number, required: true },
-      answers: [
-        {
-          id: { type: Number, required: true, unique: true },
-          text: { type: String, required: true },
-        },
-      ],
-    },
-  ],
-});
+const QuizSchema = new Schema(
+  {
+    _id: { type: Types.ObjectId, auto: true },
+    title: { type: String, required: true },
+    body: [
+      {
+        id: { type: Number, required: true },
+        question: { type: String, required: true },
+        rightAnswerId: { type: Number, required: true },
+        answers: [
+          {
+            id: { type: Number, required: true },
+            text: { type: String, required: true },
+          },
+        ],
+      },
+    ],
+  },
+  { _id: false }
+);
 
 export default model("Quiz", QuizSchema);
