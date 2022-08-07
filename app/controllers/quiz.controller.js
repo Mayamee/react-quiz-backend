@@ -2,8 +2,8 @@ import QuizService from "../services/quiz.service.js";
 class QuizController {
   async getQuizes(_req, res, next) {
     try {
-      await QuizService.getQuizes({});
-      return res.status(200).json({ status: 200, data: quizes });
+      const quizesData = await QuizService.getQuizes();
+      return res.status(200).json({ status: 200, data: quizesData });
     } catch (error) {
       next(error);
     }
@@ -12,7 +12,7 @@ class QuizController {
     try {
       const body = req.body;
       const someInfo = await QuizService.addQuiz(body);
-      console.log(someInfo);
+      return res.status(200).json({ status: 200, data: someInfo.status });
     } catch (error) {
       next(error);
     }

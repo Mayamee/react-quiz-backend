@@ -1,8 +1,10 @@
 import QuizModel from "../models/QuizModel.js";
+import QuizDTO from "../dtos/QuizDTO.js";
 
 class QuizService {
   async getQuizes() {
-    return await QuizModel.find({});
+    const quizesData = await QuizModel.find();
+    return quizesData.map((quiz) => new QuizDTO(quiz));
   }
   async addQuiz(body) {
     const quiz = await QuizModel.create({
@@ -11,7 +13,7 @@ class QuizService {
     });
     return await quiz.save();
   }
-  async getQuizByHash() {}
+  async getQuizById() {}
   async updateQuizByHash() {}
   async deleteQuizByHash() {}
 }
