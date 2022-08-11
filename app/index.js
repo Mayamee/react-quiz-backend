@@ -1,9 +1,11 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import { loggerMiddleware } from "./middleware/logger.middleware.js";
 import quizRouter from "./routes/quiz.router.js";
+import authRouter from "./routes/auth.router.js";
 import { catchErrorMiddleware } from "./middleware/catchError.middleware.js";
 dotenv.config();
 const app = express();
@@ -18,7 +20,11 @@ app.use(
   })
 );
 app.use(express.json());
-app.use("/api", quizRouter);
+app.use(cookieParser());
+//Quizes
+app.use("/api/quiz", quizRouter);
+//Authorization
+app.use("/api/auth", authRouter);
 app.use("*", (_req, res) => {
   res.status(404).json({ data: "Not found" });
 });

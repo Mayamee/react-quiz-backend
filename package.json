@@ -4,10 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "crypto-js": "^4.1.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-validator": "^6.14.2",
     "mongoose": "^6.5.1",
     "uuid": "^8.3.2"
   },

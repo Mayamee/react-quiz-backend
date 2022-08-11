@@ -5,6 +5,9 @@ export default function validateQuizObject(quizObject) {
   if (!title) {
     throw ApiError.ValidationError("No title provided");
   }
+  if (title.length > 50) {
+    throw ApiError.ValidationError("Title is too long");
+  }
   if (!body) {
     throw ApiError.ValidationError("No body provided");
   }

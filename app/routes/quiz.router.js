@@ -4,10 +4,10 @@ import validateQuizObjectMiddleware from "../middleware/validateQuizObject.middl
 import validateQuizIdMiddleware from "../middleware/validateQuizId.middleware.js";
 const router = Router();
 
-router.get("/quiz", quizController.getQuizes);
-router.post("/quiz", validateQuizObjectMiddleware, quizController.addQuiz);
-router.get("/quiz/:id", validateQuizIdMiddleware, quizController.getQuizById);
-router.put("/quiz/:id", quizController.updateQuizById);
-router.delete("/quiz/:id", quizController.deleteQuizById);
+router.get("/", quizController.getQuizes);
+router.post("/", validateQuizObjectMiddleware, quizController.addQuiz);
+router.get("/:id", validateQuizIdMiddleware, quizController.getQuizById);
+router.put("/:id", quizController.updateQuizById);
+router.delete("/:id", quizController.deleteQuizById);
 
 export default router;
