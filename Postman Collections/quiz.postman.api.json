@@ -86,6 +86,20 @@
 			"item": [
 				{
 					"name": "GetQuizes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe32a084-aee7-45c9-a19d-9d59dca04640",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "70b77620-27f2-4e05-abe9-0530938d227c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
