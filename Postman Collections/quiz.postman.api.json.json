@@ -10,7 +10,7 @@
 			"item": [
 				{
 					"name": "RegisterUser",
-					"_postman_id": "567eccb3-22ab-45b1-a6eb-52b2062541d4",
+					"id": "567eccb3-22ab-45b1-a6eb-52b2062541d4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -32,7 +32,7 @@
 				},
 				{
 					"name": "LoginUser",
-					"_postman_id": "9a3f2186-8359-4e30-bef3-0ccdeeae63ab",
+					"id": "9a3f2186-8359-4e30-bef3-0ccdeeae63ab",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -54,7 +54,7 @@
 				},
 				{
 					"name": "LogoutUser",
-					"_postman_id": "7f8d744d-c9f0-4233-940f-72ceea010101",
+					"id": "7f8d744d-c9f0-4233-940f-72ceea010101",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -63,7 +63,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"{{test_mail}}\",\r\n    \"password\": \"{{test_password}}\"\r\n}",
+							"raw": "{\r\n    \"email\": \"{{test_mail}}\",\r\n    \"password\": \"{{test_password}}\",\r\n    \"some\":\"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,14 +75,14 @@
 					"response": []
 				}
 			],
-			"_postman_id": "6b487360-c600-4225-8666-56911ec856e0"
+			"id": "6b487360-c600-4225-8666-56911ec856e0"
 		},
 		{
 			"name": "Quizes",
 			"item": [
 				{
 					"name": "GetQuizes",
-					"_postman_id": "70b77620-27f2-4e05-abe9-0530938d227c",
+					"id": "70b77620-27f2-4e05-abe9-0530938d227c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -95,7 +95,7 @@
 				},
 				{
 					"name": "GetQuizById",
-					"_postman_id": "4fd00ba4-8c9e-4f1b-a5ae-7f2e097c4358",
+					"id": "4fd00ba4-8c9e-4f1b-a5ae-7f2e097c4358",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -115,8 +115,7 @@
 								{
 									"id": "a626a5ec-9148-4513-9ccb-bda6b6759dd7",
 									"key": "id",
-									"value": "62f64dfdbba2110bd886902e",
-									"type": "string"
+									"value": "62f64dfdbba2110bd886902e"
 								}
 							]
 						}
@@ -125,7 +124,7 @@
 				},
 				{
 					"name": "AddQuiz",
-					"_postman_id": "b1706f0b-a3b0-4d7a-a1e1-8b5bd1adbb0f",
+					"id": "b1706f0b-a3b0-4d7a-a1e1-8b5bd1adbb0f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -146,7 +145,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "b724158a-8cb3-4867-805e-86a37030cb00"
+			"id": "b724158a-8cb3-4867-805e-86a37030cb00"
 		}
 	]
 }
