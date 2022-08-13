@@ -67,6 +67,18 @@
 				},
 				{
 					"name": "RefreshToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0c93712-6792-4ba2-b6ef-09a73c77938e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "638aa381-b944-44d6-b179-3814cdaf0969",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -86,6 +98,26 @@
 			"item": [
 				{
 					"name": "GetQuizes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8b60331-a969-46d4-9214-2e2378c82434",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(228);\r",
+									"});\r",
+									"var jsonData = pm.response.json()\r",
+									"console.log(jsonData)\r",
+									"// создает тест\r",
+									"pm.test(\"Проверка 1 элемента массива body на что то там\",()=>{\r",
+									"    pm.expect(jsonData.data[0].id).to.equal(\"62f7900d69ac22ffe14c75ccc\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "70b77620-27f2-4e05-abe9-0530938d227c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
