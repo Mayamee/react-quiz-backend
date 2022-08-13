@@ -63,7 +63,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"{{test_mail}}\",\r\n    \"password\": \"{{test_password}}\",\r\n    \"some\":\"test\"\r\n}",
+							"raw": "{\r\n    \"email\": \"{{test_mail}}\",\r\n    \"password\": \"{{test_password}}\",\r\n    \"some\": \"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
