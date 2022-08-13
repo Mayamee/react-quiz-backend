@@ -55,6 +55,22 @@ class AuthController {
     }
   }
   async activate(req, res, next) {}
-  async refresh(req, res, next) {}
+  async refresh(req, res, next) {
+    try {
+      // Получаем токен обновления для обновления авторизации пользователя
+      const { refreshToken } = req.cookies;
+      // Отправляем данные на сервис для обновления авторизации
+      const userData = await UserService.refresh(refreshToken);
+      // Создаем http куки для авторизации пользователя
+      res.cookie("refreshToken", userData.refreshToken, {
+        httpOnly: true,
+        maxAge: 2592000000,
+      });
+      // Возвращаем данные пользователя в ответе
+      return res.status(200).json(userData);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 export default new AuthController();

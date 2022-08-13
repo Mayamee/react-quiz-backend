@@ -28,5 +28,28 @@ class TokenService {
     const tokenData = await TokenModel.deleteOne({ refreshToken });
     return tokenData;
   }
+  async findToken(refreshToken) {
+    const tokenData = await TokenModel.findOne({ refreshToken });
+    return tokenData;
+  }
+  async validateRefreshToken(refreshToken) {
+    try {
+      const tokenData = JWT.verify(
+        refreshToken,
+        process.env.JWT_REFRESH_SECRET
+      );
+      return tokenData;
+    } catch (err) {
+      return null;
+    }
+  }
+  async validateAccessToken(accessToken) {
+    try {
+      const tokenData = JWT.verify(accessToken, process.env.JWT_ACCESS_SECRET);
+      return tokenData;
+    } catch (err) {
+      return null;
+    }
+  }
 }
 export default new TokenService();
