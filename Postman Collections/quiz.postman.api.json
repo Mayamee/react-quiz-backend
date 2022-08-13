@@ -90,11 +90,17 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "fe32a084-aee7-45c9-a19d-9d59dca04640",
+								"id": "e8b60331-a969-46d4-9214-2e2378c82434",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
+									"    pm.response.to.have.status(228);\r",
+									"});\r",
+									"var jsonData = pm.response.json()\r",
+									"console.log(jsonData)\r",
+									"// создает тест\r",
+									"pm.test(\"Проверка 1 элемента массива body на что то там\",()=>{\r",
+									"    pm.expect(jsonData.data[0].id).to.equal(\"62f7900d69ac22ffe14c75ccc\")\r",
+									"})"
 								],
 								"type": "text/javascript"
 							}
