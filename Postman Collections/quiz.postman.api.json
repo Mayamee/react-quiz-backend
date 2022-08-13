@@ -73,6 +73,28 @@
 						"url": "{{api_url}}/auth/logout"
 					},
 					"response": []
+				},
+				{
+					"name": "RefreshToken",
+					"id": "638aa381-b944-44d6-b179-3814cdaf0969",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{test_mail}}\",\r\n    \"password\": \"{{test_password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{api_url}}/auth/logout"
+					},
+					"response": []
 				}
 			],
 			"id": "6b487360-c600-4225-8666-56911ec856e0"
