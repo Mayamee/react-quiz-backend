@@ -95,5 +95,16 @@ class UserService {
       ...tokens,
     };
   }
+  async activate(activationLink) {
+    // Ищем пользователя по линку активации
+    const user = await UserModel.findOne({ activationLink });
+    // Если пользователь не найден то выбрасываем ошибку
+    if (!user) {
+      throw ApiError.BadRequest("User not found");
+    }
+    // Если пользователь найден то обновляем его статус на активированный
+    user.activated = true;
+    await user.save();
+  }
 }
 export default new UserService();

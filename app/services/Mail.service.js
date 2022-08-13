@@ -22,7 +22,7 @@ class MailService {
       subject: `Подтверждение регистрации на ${process.env.APP_URL}`,
       text: "",
       html: `
-				<h2>Для подтверждения регистрации перейдите по <a href="${process.env.APP_URL}/api/activate/${activationLink}">ссылке</a></h2>
+				<h2>Для подтверждения регистрации перейдите по <a href="${process.env.APP_URL}/api/auth/activate/${activationLink}">ссылке</a></h2>
 				<p>Ссылка действительна в течение 24 часов.</p>
 				<p>С уважением, администрация сайта.</p>
 			`,

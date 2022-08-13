@@ -56,6 +56,9 @@ class AuthController {
   }
   async activate(req, res, next) {
     try {
+      const { link } = req.params;
+      const user = await UserService.activate(link);
+      return res.redirect(process.env.CLIENT_URL);
     } catch (error) {
       next(error);
     }
