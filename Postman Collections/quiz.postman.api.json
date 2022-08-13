@@ -67,6 +67,18 @@
 				},
 				{
 					"name": "RefreshToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0c93712-6792-4ba2-b6ef-09a73c77938e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "638aa381-b944-44d6-b179-3814cdaf0969",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
