@@ -54,7 +54,12 @@ class AuthController {
       next(error);
     }
   }
-  async activate(req, res, next) {}
+  async activate(req, res, next) {
+    try {
+    } catch (error) {
+      next(error);
+    }
+  }
   async refresh(req, res, next) {
     try {
       // Получаем токен обновления для обновления авторизации пользователя

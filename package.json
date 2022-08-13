@@ -20,6 +20,7 @@
     "dev": "nodemon app/index.js"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.5",
     "nodemon": "^2.0.19"
   },
   "type": "module"
