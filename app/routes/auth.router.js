@@ -12,7 +12,7 @@ router.post(
   AuthController.registration
 );
 router.post("/login", AuthController.login);
-router.post("/logout", AuthController.logout);
+router.get("/logout", AuthController.logout);
 router.get("/activate/:link", AuthController.activate);
 router.get("/refresh", AuthController.refresh);
 

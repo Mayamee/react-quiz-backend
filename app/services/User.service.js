@@ -1,6 +1,5 @@
 import ApiError from "../error/ApiError.js";
 import UserModel from "../models/UserModel.js";
-import TokenModel from "../models/TokenModel.js";
 import TokenService from "./Token.service.js";
 import MailService from "./Mail.service.js";
 import UserDTO from "../dtos/UserDTO.js";
@@ -35,9 +34,31 @@ class UserService {
     const tokens = await TokenService.generateTokens({ ...userDTO });
     // сохраняем токены в базе
     await TokenService.saveToken(tokens.refreshToken, userDTO.id);
+    return {
+      ...userDTO,
+      ...tokens,
+    };
   }
-  async login(email, password) {}
-  async logout(refreshToken) {}
+  async login(email, password) {
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      throw ApiError.BadRequest("User not found");
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw ApiError.BadRequest("Invalid password");
+    }
+    const userDTO = new UserDTO(user);
+    const tokens = await TokenService.generateTokens({ ...userDTO });
+    await TokenService.saveToken(tokens.refreshToken, userDTO.id);
+    return {
+      ...userDTO,
+      ...tokens,
+    };
+  }
+  async logout(refreshToken) {
+    return await TokenService.removeToken(refreshToken);
+  }
   async refresh(refreshToken) {}
 }
 export default new UserService();
