@@ -26,3 +26,8 @@ export const writeToAccessLog = writeLogToFile.bind(null, [
   "access.log",
 ]);
 export const writeToErrorLog = writeLogToFile.bind(null, ["logs", "error.log"]);
+
+export const writeToServiceLog = writeLogToFile.bind(null, [
+  "logs",
+  "service.log",
+]);

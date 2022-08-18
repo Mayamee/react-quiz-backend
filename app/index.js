@@ -3,10 +3,12 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
+import { exec } from "./lib/exec.js";
 import { loggerMiddleware } from "./middleware/logger.middleware.js";
 import quizRouter from "./routes/quiz.router.js";
 import authRouter from "./routes/auth.router.js";
 import { catchErrorMiddleware } from "./middleware/catchError.middleware.js";
+import { writeToServiceLog } from "./lib/fileWrite.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.SERVER_PORT || 5050;
@@ -29,10 +31,9 @@ app.use("*", (_req, res) => {
   res.status(404).json({ data: "Not found" });
 });
 app.use(catchErrorMiddleware);
-
-main().catch((err) => {
-  console.error(err);
-});
+//start app
+exec(100, 15000)(main);
+//start app
 
 async function main() {
   await mongoose.connect(process.env.DB_CONNECTION_STRING, {
@@ -40,6 +41,9 @@ async function main() {
     useUnifiedTopology: true,
   });
   app.listen(PORT, () => {
+    writeToServiceLog(
+      `${new Date().toUTCString()}\tserver started on port ${PORT}\n`
+    );
     console.log(`Server listening on port ${PORT}`);
   });
 }
