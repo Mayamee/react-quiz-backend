@@ -15,6 +15,8 @@ class AuthController {
       // Создаем http куки для авторизации пользователя
       res.cookie("refreshToken", userData.refreshToken, {
         httpOnly: true,
+        sameSite: "none",
+        secure: true,
         maxAge: 2592000000,
       });
       // Возвращаем данные пользователя в ответе
@@ -32,6 +34,8 @@ class AuthController {
       // Создаем http куки для авторизации пользователя
       res.cookie("refreshToken", userData.refreshToken, {
         httpOnly: true,
+        sameSite: "none",
+        secure: true,
         maxAge: 2592000000,
       });
       // Возвращаем данные пользователя в ответе
@@ -72,6 +76,8 @@ class AuthController {
       // Создаем http куки для авторизации пользователя
       res.cookie("refreshToken", userData.refreshToken, {
         httpOnly: true,
+        sameSite: "none",
+        secure: true,
         maxAge: 2592000000,
       });
       // Возвращаем данные пользователя в ответе

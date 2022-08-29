@@ -14,7 +14,6 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 5050;
 const ORIGINS = process.env.ORIGINS ? process.env.ORIGINS.split(" ") : "*";
 
-app.use(loggerMiddleware);
 app.use(
   cors({
     origin: ORIGINS,
@@ -23,6 +22,7 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+app.use(loggerMiddleware);
 //Quizes
 app.use("/api/quiz", quizRouter);
 //Authorization
