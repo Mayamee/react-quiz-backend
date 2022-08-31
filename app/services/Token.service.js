@@ -7,11 +7,11 @@ class TokenService {
   async generateTokens(payload) {
     // Создаем токен доступа к приложению
     const accessToken = JWT.sign(payload, process.env.JWT_ACCESS_SECRET, {
-      expiresIn: "1m",
+      expiresIn: "30s",
     });
     // Создаем токен для обновления доступа к приложению
     const refreshToken = JWT.sign(payload, process.env.JWT_REFRESH_SECRET, {
-      expiresIn: "30d",
+      expiresIn: "10m",
     });
     return { accessToken, refreshToken };
   }
@@ -32,7 +32,7 @@ class TokenService {
     const tokenData = await TokenModel.findOne({ refreshToken });
     return tokenData;
   }
-  async validateRefreshToken(refreshToken) {
+  validateRefreshToken(refreshToken) {
     try {
       const tokenData = JWT.verify(
         refreshToken,
@@ -43,9 +43,10 @@ class TokenService {
       return null;
     }
   }
-  async validateAccessToken(accessToken) {
+  validateAccessToken(accessToken) {
     try {
       const tokenData = JWT.verify(accessToken, process.env.JWT_ACCESS_SECRET);
+      console.log({ tokenData });
       return tokenData;
     } catch (err) {
       return null;
