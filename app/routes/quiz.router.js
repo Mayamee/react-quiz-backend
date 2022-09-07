@@ -9,10 +9,11 @@ const router = Router();
 router.get("/", quizController.getQuizes);
 router.post(
   "/",
-  //TODO authMiddleware,
+  authMiddleware,
   validateQuizObjectMiddleware,
   quizController.addQuiz
 );
+router.get("/my", authMiddleware, quizController.getQuizesByUserId);
 router.get("/:id", validateQuizIdMiddleware, quizController.getQuizById);
 router.put("/:id", quizController.updateQuizById);
 router.delete("/:id", quizController.deleteQuizById);

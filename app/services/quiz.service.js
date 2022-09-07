@@ -2,6 +2,8 @@ import QuizModel from "../models/QuizModel.js";
 
 import QuizDTO from "../dtos/QuizDTO.js";
 import ApiError from "../error/ApiError.js";
+import pkg from "mongoose";
+const { isValidObjectId } = pkg;
 
 class QuizService {
   async getQuizes() {
@@ -22,6 +24,15 @@ class QuizService {
       throw ApiError.NotFound("Quiz not found");
     }
     return new QuizDTO(quiz);
+  }
+  async getQuizesByUserId(id) {
+    if (!isValidObjectId(id)) {
+      throw ApiError.BadRequest("Incorrect ObjectId");
+    }
+    const quizesData = await QuizModel.find({
+      "ownerInfo.userId": id,
+    });
+    return quizesData.map((quiz) => new QuizDTO(quiz));
   }
   async updateQuizByHash() {}
   async deleteQuizByHash() {}
