@@ -1,4 +1,5 @@
 import QuizModel from "../models/QuizModel.js";
+
 import QuizDTO from "../dtos/QuizDTO.js";
 import ApiError from "../error/ApiError.js";
 
@@ -7,10 +8,11 @@ class QuizService {
     const quizesData = await QuizModel.find();
     return quizesData.map((quiz) => new QuizDTO(quiz));
   }
-  async addQuiz(body) {
+  async addQuiz(title, body, ownerInfo) {
     const quiz = await QuizModel.create({
-      title: body.title,
-      body: body.body,
+      title,
+      body,
+      ownerInfo,
     });
     return await quiz.save();
   }

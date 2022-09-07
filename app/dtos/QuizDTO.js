@@ -3,5 +3,6 @@ export default class QuizDTO {
     this.id = data._id;
     this.title = data.title;
     this.body = data.body;
+    this.ownerName = data.ownerInfo.name;
   }
 }

@@ -9,7 +9,7 @@ const router = Router();
 router.get("/", quizController.getQuizes);
 router.post(
   "/",
-  authMiddleware,
+  //TODO authMiddleware,
   validateQuizObjectMiddleware,
   quizController.addQuiz
 );

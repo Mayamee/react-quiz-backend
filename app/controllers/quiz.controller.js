@@ -10,8 +10,8 @@ class QuizController {
   }
   async addQuiz(req, res, next) {
     try {
-      const body = req.body;
-      const someInfo = await QuizService.addQuiz(body);
+      const { title, body, ownerInfo } = req.body;
+      const someInfo = await QuizService.addQuiz(title, body, ownerInfo);
       return res.status(200).json({ status: 200, data: someInfo.status });
     } catch (error) {
       next(error);

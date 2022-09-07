@@ -1,9 +1,10 @@
 import pkg from "mongoose";
 const { Schema, model, Types } = pkg;
-
+import QuizOwnerInfoModel from "./QuizOwnerInfoModel.js";
 const QuizSchema = new Schema(
   {
     _id: { type: Types.ObjectId, auto: true },
+    ownerInfo: QuizOwnerInfoModel,
     title: { type: String, required: true },
     body: [
       {

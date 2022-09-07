@@ -7,11 +7,11 @@ class TokenService {
   async generateTokens(payload) {
     // Создаем токен доступа к приложению
     const accessToken = JWT.sign(payload, process.env.JWT_ACCESS_SECRET, {
-      expiresIn: "30s",
+      expiresIn: "10s",
     });
     // Создаем токен для обновления доступа к приложению
     const refreshToken = JWT.sign(payload, process.env.JWT_REFRESH_SECRET, {
-      expiresIn: "10m",
+      expiresIn: "30s",
     });
     return { accessToken, refreshToken };
   }
