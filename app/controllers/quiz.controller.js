@@ -32,7 +32,6 @@ class QuizController {
         user: { id },
       } = req;
       const quizesData = await QuizService.getQuizesByUserId(id);
-      console.log(quizesData);
       return res.status(200).json({ status: 200, data: quizesData });
     } catch (error) {
       next(error);
