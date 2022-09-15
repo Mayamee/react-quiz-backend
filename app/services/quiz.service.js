@@ -34,7 +34,29 @@ class QuizService {
     });
     return quizesData.map((quiz) => new QuizDTO(quiz));
   }
-  async updateQuizByHash() {}
-  async deleteQuizByHash() {}
+  async updateQuizById() {}
+  async checkQuizOwner(id, userId) {
+    if (!isValidObjectId(id)) {
+      throw ApiError.BadRequest("Incorrect Quiz Id");
+    }
+    if (!isValidObjectId(userId)) {
+      throw ApiError.BadRequest("Incorrect User Id");
+    }
+    //todo может быть лишним
+    const quiz = await QuizModel.findById(id);
+    if (quiz === null) {
+      throw ApiError.NotFound("Quiz not found");
+    }
+    if (quiz.ownerInfo.userId.toString() !== userId) {
+      throw ApiError.Forbidden("You are not the owner of this quiz");
+    }
+  }
+  async deleteQuizById(id) {
+    const quiz = await QuizModel.deleteOne({ _id: id });
+    if (quiz.deletedCount === 0) {
+      throw ApiError.NotFound("Quiz not found");
+    }
+    return quiz;
+  }
 }
 export default new QuizService();

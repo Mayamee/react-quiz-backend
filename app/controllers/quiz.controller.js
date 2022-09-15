@@ -11,8 +11,8 @@ class QuizController {
   async addQuiz(req, res, next) {
     try {
       const { title, body, ownerInfo } = req.body;
-      const someInfo = await QuizService.addQuiz(title, body, ownerInfo);
-      return res.status(200).json({ status: 200, data: someInfo.status });
+      const info = await QuizService.addQuiz(title, body, ownerInfo);
+      return res.status(200).json({ status: 200, data: info.status });
     } catch (error) {
       next(error);
     }
@@ -43,7 +43,16 @@ class QuizController {
   }
   async deleteQuizById(req, res, next) {
     try {
-    } catch (error) {}
+      const {
+        params: { id },
+        user: { id: userId },
+      } = req;
+      await QuizService.checkQuizOwner(id, userId);
+      const quizData = await QuizService.deleteQuizById(id);
+      return res.status(200).json({ status: 200, data: quizData });
+    } catch (error) {
+      next(error);
+    }
   }
 }
 

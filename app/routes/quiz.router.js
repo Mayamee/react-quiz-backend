@@ -16,6 +16,6 @@ router.post(
 router.get("/my", authMiddleware, quizController.getQuizesByUserId);
 router.get("/:id", validateQuizIdMiddleware, quizController.getQuizById);
 router.put("/:id", quizController.updateQuizById);
-router.delete("/:id", quizController.deleteQuizById);
+router.delete("/:id", authMiddleware, quizController.deleteQuizById);
 
 export default router;
