@@ -9,8 +9,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 class UserService {
-  async registration(email, password) {
-    const candidate = await UserModel.findOne({ email });
+  async registration(email, username, password) {
+    const candidate = await UserModel.findOne({
+      $or: [{ email }, { username }],
+    });
     if (candidate) {
       throw ApiError.BadRequest("User already exists");
     }
@@ -24,6 +26,7 @@ class UserService {
     // создаем нового пользователя и сохраняем в базе
     const user = await UserModel.create({
       email,
+      username,
       password: hashedPassword,
       activationLink,
     });

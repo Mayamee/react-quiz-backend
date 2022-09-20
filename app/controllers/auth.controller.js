@@ -5,13 +5,17 @@ class AuthController {
   async registration(req, res, next) {
     try {
       // Проверяем валидацию данных пролученных от клиента
-      const { email, password } = req.body;
+      const { email, username, password } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         throw ApiError.BadRequest("Ошибка валидации", errors.array());
       }
       // Отправляем данные на сервис для регистрации
-      const userData = await UserService.registration(email, password);
+      const userData = await UserService.registration(
+        email,
+        username,
+        password
+      );
       // Создаем http куки для авторизации пользователя
       res.cookie("refreshToken", userData.refreshToken, {
         httpOnly: true,
