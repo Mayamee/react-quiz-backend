@@ -1,6 +1,6 @@
-import pkg from "mongoose";
-const { Schema, model, Types } = pkg;
-import QuizOwnerInfoModel from "./QuizOwnerInfoModel.js";
+import pkg from 'mongoose'
+const { Schema, model, Types } = pkg
+import QuizOwnerInfoModel from './QuizOwnerInfoModel.js'
 const QuizSchema = new Schema(
   {
     _id: { type: Types.ObjectId, auto: true },
@@ -21,6 +21,6 @@ const QuizSchema = new Schema(
     ],
   },
   { _id: false }
-);
+)
 
-export default model("Quiz", QuizSchema);
+export default model('Quiz', QuizSchema)

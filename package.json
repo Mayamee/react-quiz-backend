@@ -17,11 +17,13 @@
   },
   "scripts": {
     "start": "node app/index.js",
-    "dev": "nodemon app/index.js"
-  },
+    "dev": "nodemon app/index.js",
+		"prettify": "prettier --write \"app/**/*.{js,json}\""
+	},  
   "devDependencies": {
     "@types/nodemailer": "^6.4.5",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
   },
   "type": "module"
 }
