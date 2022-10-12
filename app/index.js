@@ -10,10 +10,14 @@ import authRouter from './routes/auth.router.js'
 import { catchErrorMiddleware } from './middleware/catchError.middleware.js'
 import { writeToServiceLog } from './lib/fileWrite.js'
 import path from 'path'
+import fs from 'fs'
 dotenv.config()
 const app = express()
 const PORT = process.env.SERVER_PORT || 5050
 const ORIGINS = process.env.ORIGINS ? process.env.ORIGINS.split(' ') : '*'
+
+fs.existsSync(path.resolve('uploads')) || fs.mkdirSync(path.resolve('uploads'))
+fs.existsSync(path.resolve('uploads', 'logos')) || fs.mkdirSync(path.resolve('uploads', 'logos'))
 
 app.use('/uploads', express.static(path.resolve('uploads')))
 app.use(

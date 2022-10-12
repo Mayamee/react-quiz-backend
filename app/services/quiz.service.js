@@ -61,7 +61,7 @@ class QuizService {
     if (deleteData.deletedCount === 0) {
       throw ApiError.NotFound('Quiz not found')
     }
-		if (quiz.logoPath) {
+    if (quiz.logoPath) {
       fs.unlinkSync(path.resolve(quiz.logoPath))
     }
     return deleteData

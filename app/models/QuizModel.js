@@ -6,7 +6,7 @@ const QuizSchema = new Schema(
     _id: { type: Types.ObjectId, auto: true },
     ownerInfo: QuizOwnerInfoModel,
     title: { type: String, required: true },
-		logoPath: { type: String, required: false, default: null },
+    logoPath: { type: String, required: false, default: null },
     body: [
       {
         id: { type: Number, required: true },
