@@ -3,6 +3,8 @@ import QuizModel from '../models/QuizModel.js'
 import QuizDTO from '../dtos/QuizDTO.js'
 import ApiError from '../error/ApiError.js'
 import pkg from 'mongoose'
+import path from 'path'
+import fs from 'fs'
 const { isValidObjectId } = pkg
 
 class QuizService {
@@ -51,11 +53,18 @@ class QuizService {
     }
   }
   async deleteQuizById(id) {
-    const quiz = await QuizModel.deleteOne({ _id: id })
-    if (quiz.deletedCount === 0) {
+    const quiz = await QuizModel.findById(id)
+    if (quiz === null) {
       throw ApiError.NotFound('Quiz not found')
     }
-    return quiz
+    const deleteData = await QuizModel.deleteOne({ _id: id })
+    if (deleteData.deletedCount === 0) {
+      throw ApiError.NotFound('Quiz not found')
+    }
+		if (quiz.logoPath) {
+      fs.unlinkSync(path.resolve(quiz.logoPath))
+    }
+    return deleteData
   }
 }
 export default new QuizService()
