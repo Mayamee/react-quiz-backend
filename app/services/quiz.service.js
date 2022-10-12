@@ -10,11 +10,12 @@ class QuizService {
     const quizesData = await QuizModel.find()
     return quizesData.map((quiz) => new QuizDTO(quiz))
   }
-  async addQuiz(title, body, ownerInfo) {
+  async addQuiz({ quizTitle, quizBody, quizOwnerInfo, logoPath }) {
     const quiz = await QuizModel.create({
-      title,
-      body,
-      ownerInfo,
+      title: quizTitle,
+      body: quizBody,
+      ownerInfo: quizOwnerInfo,
+      logoPath,
     })
     return await quiz.save()
   }
@@ -34,7 +35,6 @@ class QuizService {
     })
     return quizesData.map((quiz) => new QuizDTO(quiz))
   }
-  async updateQuizById() {}
   async checkQuizOwner(id, userId) {
     if (!isValidObjectId(id)) {
       throw ApiError.BadRequest('Incorrect Quiz Id')
@@ -42,7 +42,6 @@ class QuizService {
     if (!isValidObjectId(userId)) {
       throw ApiError.BadRequest('Incorrect User Id')
     }
-    //todo может быть лишним
     const quiz = await QuizModel.findById(id)
     if (quiz === null) {
       throw ApiError.NotFound('Quiz not found')

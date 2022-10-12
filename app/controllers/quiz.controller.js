@@ -10,8 +10,19 @@ class QuizController {
   }
   async addQuiz(req, res, next) {
     try {
-      const { title, body, ownerInfo } = req.body
-      const info = await QuizService.addQuiz(title, body, ownerInfo)
+      console.log('File', req.file)
+      const { title, body } = req.body
+      const { id, username } = req.user
+      const quizData = {
+        quizTitle: title,
+        quizBody: JSON.parse(body),
+        quizOwnerInfo: {
+          userId: id,
+          name: username,
+        },
+        logoPath: req.file ? req.file.path : null,
+      }
+      const info = await QuizService.addQuiz(quizData)
       return res.status(200).json({ status: 200, data: info.status })
     } catch (error) {
       next(error)

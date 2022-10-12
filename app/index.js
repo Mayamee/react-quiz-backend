@@ -9,11 +9,13 @@ import quizRouter from './routes/quiz.router.js'
 import authRouter from './routes/auth.router.js'
 import { catchErrorMiddleware } from './middleware/catchError.middleware.js'
 import { writeToServiceLog } from './lib/fileWrite.js'
+import path from 'path'
 dotenv.config()
 const app = express()
 const PORT = process.env.SERVER_PORT || 5050
 const ORIGINS = process.env.ORIGINS ? process.env.ORIGINS.split(' ') : '*'
 
+app.use('/uploads', express.static(path.resolve('uploads')))
 app.use(
   cors({
     origin: ORIGINS,
