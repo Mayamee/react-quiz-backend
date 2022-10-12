@@ -10,7 +10,6 @@ class QuizController {
   }
   async addQuiz(req, res, next) {
     try {
-      console.log('File', req.file)
       const { title, body } = req.body
       const { id, username } = req.user
       const quizData = {
