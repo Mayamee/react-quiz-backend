@@ -17,14 +17,24 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
+    "dev": "webpack --watch --config webpack.config.js",
+    "build": "cross-env MODE=production webpack --config webpack.config.js && cd build && yarn install",
     "start": "node app/index.js",
-    "dev": "nodemon app/index.js",
+		"start:prod":"node index.js",
     "prettify": "prettier --write \"app/**/*.{js,json}\""
   },
   "devDependencies": {
+    "@babel/core": "^7.19.3",
     "@types/nodemailer": "^6.4.5",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.19",
-    "prettier": "^2.7.1"
-  },
-  "type": "module"
+    "nodemon-webpack-plugin": "^4.8.1",
+    "prettier": "^2.7.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-node-externals": "^3.0.0"
+  }
 }

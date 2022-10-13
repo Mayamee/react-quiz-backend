@@ -1,4 +1,4 @@
-import QuizService from '../services/Quiz.service.js'
+import QuizService from '@app/services/Quiz.service'
 class QuizController {
   async getQuizes(_req, res, next) {
     try {

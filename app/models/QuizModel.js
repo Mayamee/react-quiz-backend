@@ -1,6 +1,5 @@
-import pkg from 'mongoose'
-const { Schema, model, Types } = pkg
-import QuizOwnerInfoModel from './QuizOwnerInfoModel.js'
+import { Schema, model, Types } from 'mongoose'
+import QuizOwnerInfoModel from '@app/models/QuizOwnerInfoModel'
 const QuizSchema = new Schema(
   {
     _id: { type: Types.ObjectId, auto: true },

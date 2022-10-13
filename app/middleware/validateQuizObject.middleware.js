@@ -1,4 +1,4 @@
-import validateQuizObject from '../lib/validateQuizObject.js'
+import validateQuizObject from '@app/lib/validateQuizObject'
 
 export default function validateQuizObjectMiddleware(req, res, next) {
   const body = req.body

@@ -1,5 +1,4 @@
-import pkg from 'mongoose'
-const { Schema, model, Types } = pkg
+import { Schema, model, Types } from 'mongoose'
 
 const TokenSchema = new Schema({
   user: { type: Types.ObjectId, required: true, ref: 'User' },

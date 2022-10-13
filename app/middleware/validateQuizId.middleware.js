@@ -1,6 +1,6 @@
-import pkg from 'mongoose'
-const { Types } = pkg
-import ApiError from '../error/ApiError.js'
+import { Types } from 'mongoose'
+
+import ApiError from '@app/error/ApiError'
 
 export default function validateQuizId(req, _res, next) {
   try {

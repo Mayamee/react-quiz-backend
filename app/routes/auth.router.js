@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { body } from 'express-validator'
-import AuthController from '../controllers/auth.controller.js'
+import AuthController from '@app/controllers/auth.controller'
 const router = Router()
 
 router.post(

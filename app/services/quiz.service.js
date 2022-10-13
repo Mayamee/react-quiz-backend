@@ -1,11 +1,10 @@
-import QuizModel from '../models/QuizModel.js'
+import QuizModel from '@app/models/QuizModel'
 
-import QuizDTO from '../dtos/QuizDTO.js'
-import ApiError from '../error/ApiError.js'
-import pkg from 'mongoose'
+import QuizDTO from '@app/dtos/QuizDTO'
+import ApiError from '@app/error/ApiError'
+import { isValidObjectId } from 'mongoose'
 import path from 'path'
 import fs from 'fs'
-const { isValidObjectId } = pkg
 
 class QuizService {
   async getQuizes() {

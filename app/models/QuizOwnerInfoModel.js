@@ -1,5 +1,4 @@
-import pkg from 'mongoose'
-const { Schema, Types } = pkg
+import { Schema, Types } from 'mongoose'
 
 export default new Schema({
   name: { type: String, required: true },

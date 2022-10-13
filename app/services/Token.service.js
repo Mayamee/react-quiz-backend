@@ -1,5 +1,5 @@
 import JWT from 'jsonwebtoken'
-import TokenModel from '../models/TokenModel.js'
+import TokenModel from '@app/models/TokenModel'
 import dotenv from 'dotenv'
 dotenv.config()
 
