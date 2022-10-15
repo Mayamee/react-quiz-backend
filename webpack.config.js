@@ -1,5 +1,4 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const NodemonPlugin = require('nodemon-webpack-plugin')
 const WebpackNodeExternals = require('webpack-node-externals')
 
@@ -15,34 +14,7 @@ module.exports = {
     filename: 'index.js',
   },
   externals: [WebpackNodeExternals()],
-  plugins: [
-    new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: '.env',
-          to: '.',
-          noErrorOnMissing: false,
-        },
-        {
-          from: 'package.json',
-          to: '.',
-          noErrorOnMissing: false,
-        },
-        {
-          from: 'package-lock.json',
-          to: '.',
-          noErrorOnMissing: false,
-        },
-        {
-          from: 'yarn.lock',
-          to: '.',
-          noErrorOnMissing: false,
-        },
-      ],
-    }),
-    new NodemonPlugin(),
-  ],
+  plugins: [new CleanWebpackPlugin(), new NodemonPlugin()],
   module: {
     rules: [{ test: /\.js$/, use: ['babel-loader'] }],
   },
