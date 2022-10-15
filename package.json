@@ -20,8 +20,8 @@
     "dev": "webpack --watch --config webpack.config.js",
     "build": "cross-env MODE=production webpack --config webpack.config.js && cd build && yarn install",
     "start": "node app/index.js",
-		"start:prod":"node index.js",
-    "prettify": "prettier --write \"app/**/*.{js,json}\""
+    "start:prod": "node index.js",
+    "prettify": "prettier --write ."
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
