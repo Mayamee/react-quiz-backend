@@ -30,7 +30,6 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.19",
     "nodemon-webpack-plugin": "^4.8.1",
     "prettier": "^2.7.1",
     "webpack": "^5.74.0",

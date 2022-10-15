@@ -1900,7 +1900,7 @@ nodemon-webpack-plugin@^4.8.1:
     "@types/nodemon" latest
     nodemon "2.0.19"
 
-nodemon@2.0.19, nodemon@^2.0.19:
+nodemon@2.0.19:
   version "2.0.19"
   resolved "https://registry.npmjs.org/nodemon/-/nodemon-2.0.19.tgz"
   integrity sha512-4pv1f2bMDj0Eeg/MhGqxrtveeQ5/G/UVe9iO6uTZzjnRluSA4PVWf8CW99LUPwGB3eNIA7zUFoP77YuI7hOc0A==
