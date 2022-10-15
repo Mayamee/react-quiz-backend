@@ -14,6 +14,8 @@ import fs from 'fs'
 dotenv.config()
 const app = express()
 const PORT = process.env.SERVER_PORT || 5050
+const HOST = process.env.HOST || '0.0.0.0'
+const PROTOCOL = process.env.PROTOCOL || 'http'
 const ORIGINS = process.env.ORIGINS ? process.env.ORIGINS.split(' ') : '*'
 
 fs.existsSync(path.resolve('uploads')) || fs.mkdirSync(path.resolve('uploads'))
@@ -46,8 +48,8 @@ async function main() {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  app.listen(PORT, () => {
+  app.listen(PORT, HOST, () => {
     writeToServiceLog(`${new Date().toUTCString()}\tserver started on port ${PORT}\n`)
-    console.log(`Server listening on port ${PORT}`)
+    console.log(`Server listening: ${HOST} port ${PORT}/tcp`)
   })
 }
