@@ -18,7 +18,12 @@
   },
   "scripts": {
     "dev": "webpack --watch --config webpack.config.js",
-    "build": "cross-env MODE=production webpack --config webpack.config.js && cd build && yarn install",
+    "build:project": "yarn build:clear && yarn build && copyfiles package.json yarn.lock build",
+    "build:docker": "yarn build:project && docker build -t react-quiz-api .",
+    "docker:run": "docker run --rm --add-host mongo.internal:172.17.0.2 --name react-quiz-api -p 8080:8080 react-quiz-api",
+    "docker:build-run": "yarn build:docker && yarn docker:run",
+    "build:clear": "cf build",
+    "build": "webpack --config webpack.config.js",
     "start": "node app/index.js",
     "start:prod": "node index.js",
     "prettify": "prettier --write ."
@@ -28,7 +33,9 @@
     "@types/nodemailer": "^6.4.5",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
+    "clear-folder": "^3.2.1",
     "copy-webpack-plugin": "^11.0.0",
+    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "nodemon-webpack-plugin": "^4.8.1",
     "prettier": "^2.7.1",
