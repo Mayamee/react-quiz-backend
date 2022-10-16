@@ -13,7 +13,7 @@ import path from 'path'
 import fs from 'fs'
 dotenv.config()
 const app = express()
-const PORT = process.env.SERVER_PORT || 5050
+const PORT = process.env.SERVER_PORT || 8080
 const HOST = process.env.HOST || '0.0.0.0'
 const PROTOCOL = process.env.PROTOCOL || 'http'
 const ORIGINS = process.env.ORIGINS ? process.env.ORIGINS.split(' ') : '*'

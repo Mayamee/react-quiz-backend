@@ -4,3 +4,4 @@ logs/*
 *.yml
 *.log
 *.pid
+*.md
