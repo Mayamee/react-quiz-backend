@@ -19,10 +19,10 @@
   "scripts": {
     "dev": "webpack --watch --config webpack.config.js",
     "build": "npm-run-all --serial build:code build:move-configs",
-    "docker:build": "npm-run-all --serial build docker:build-container",
+    "docker:build": "npm-run-all --serial build docker:build-image",
     "build:code": "webpack --config webpack.config.js",
     "build:move-configs": "copyfiles .env package.json yarn.lock build",
-    "docker:build-container": "docker build -t react-quiz-api .",
+    "docker:build-image": "docker build -t react-quiz-api .",
     "start": "node app/index.js",
     "prettify": "prettier --write ."
   },

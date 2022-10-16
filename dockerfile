@@ -5,4 +5,4 @@ EXPOSE 8080
 WORKDIR /usr/src/app
 COPY build .
 RUN ["yarn", "install", "--production=true"]
-CMD ["node", "index.js"]
+ENTRYPOINT ["node", "index.js"]
