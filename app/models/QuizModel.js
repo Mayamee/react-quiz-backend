@@ -1,5 +1,5 @@
 import { Schema, model, Types } from 'mongoose'
-import QuizOwnerInfoModel from '@app/models/QuizOwnerInfoModel'
+import QuizOwnerInfoModel from '../models/QuizOwnerInfoModel'
 const QuizSchema = new Schema(
   {
     _id: { type: Types.ObjectId, auto: true },

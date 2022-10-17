@@ -1,7 +1,6 @@
-import QuizModel from '@app/models/QuizModel'
-
-import QuizDTO from '@app/dtos/QuizDTO'
-import ApiError from '@app/error/ApiError'
+import QuizModel from '../models/QuizModel'
+import QuizDTO from '../dtos/QuizDTO'
+import ApiError from '../error/ApiError'
 import { isValidObjectId } from 'mongoose'
 import path from 'path'
 import fs from 'fs'

@@ -1,5 +1,5 @@
-import ApiError from '@app/error/ApiError'
-import TokenService from '@app/services/Token.service'
+import ApiError from '../error/ApiError'
+import TokenService from '../services/Token.service'
 
 export default function authMiddleware(req, _res, next) {
   try {

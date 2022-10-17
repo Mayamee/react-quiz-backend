@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import quizController from '@app/controllers/quiz.controller'
-import validateQuizObjectMiddleware from '@app/middleware/validateQuizObject.middleware'
-import validateQuizIdMiddleware from '@app/middleware/validateQuizId.middleware'
-import authMiddleware from '@app/middleware/auth.middleware'
-import upload from '@app/middleware/multer.middleware'
+import quizController from '../controllers/quiz.controller'
+import validateQuizObjectMiddleware from '../middleware/validateQuizObject.middleware'
+import validateQuizIdMiddleware from '../middleware/validateQuizId.middleware'
+import authMiddleware from '../middleware/auth.middleware'
+import upload from '../middleware/multer.middleware'
 
 const router = Router()
 

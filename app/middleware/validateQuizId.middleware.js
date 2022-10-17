@@ -1,6 +1,6 @@
 import { Types } from 'mongoose'
 
-import ApiError from '@app/error/ApiError'
+import ApiError from '../error/ApiError'
 
 export default function validateQuizId(req, _res, next) {
   try {

@@ -1,6 +1,6 @@
-import UserService from '@app/services/User.service'
+import UserService from '../services/User.service'
 import { validationResult } from 'express-validator'
-import ApiError from '@app/error/ApiError'
+import ApiError from '../error/ApiError'
 class AuthController {
   async registration(req, res, next) {
     try {

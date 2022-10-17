@@ -20,9 +20,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.json'],
-    alias: {
-      '@app': paths.src,
-      '@build': paths.build,
-    },
   },
 }

@@ -1,5 +1,5 @@
-import ApiError from '@app/error/ApiError'
-import { writeToErrorLog } from '@app/lib/fileWrite'
+import ApiError from '../error/ApiError'
+import { writeToErrorLog } from '../lib/fileWrite'
 
 export const catchErrorMiddleware = (err, req, res, next) => {
   if (err instanceof ApiError) {
