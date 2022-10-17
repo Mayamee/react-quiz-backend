@@ -1,0 +1,13 @@
+version: "3.5"
+services:
+  app-db:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=quiz
+      - MONGO_INITDB_ROOT_PASSWORD=quiz
+  app-api:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app-db

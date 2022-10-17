@@ -44,7 +44,13 @@ exec(100, 15000)(main)
 //start app
 
 async function main() {
-  await mongoose.connect(process.env.DB_CONNECTION_STRING, {
+  const DB_USER = process.env.DB_USER || 'admin'
+  const DB_PASSWORD = process.env.DB_PASSWORD || 'admin'
+  const DB_NAME = process.env.DB_NAME || 'test'
+  const DB_HOST = process.env.DB_HOST || 'localhost'
+  const DB_PORT = process.env.DB_PORT || '27017'
+  const DB_CONNECTION_STRING = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authMechanism=DEFAULT&authSource=admin`
+  await mongoose.connect(DB_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

@@ -22,7 +22,7 @@
     "docker:build": "npm-run-all --serial build docker:build-image",
     "build:code": "webpack --config webpack.config.js",
     "build:move-configs": "copyfiles .env package.json yarn.lock build",
-    "docker:build-image": "docker build -t react-quiz-api .",
+    "docker:build-image": "docker build -t app-api .",
     "start": "node app/index.js",
     "prettify": "prettier --write ."
   },
