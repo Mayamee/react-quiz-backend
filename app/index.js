@@ -40,7 +40,7 @@ app.use('*', (_req, res) => {
 })
 app.use(catchErrorMiddleware)
 //start app
-exec(100, 15000)(main)
+exec(1000, 15000)(main)
 //start app
 
 async function main() {
