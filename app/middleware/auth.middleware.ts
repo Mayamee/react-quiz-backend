@@ -1,7 +1,13 @@
+import { NextFunction, Request, Response } from 'express'
 import ApiError from '../error/ApiError'
 import TokenService from '../services/Token.service'
 
-export default function authMiddleware(req, _res, next) {
+interface IAuthRequest extends Request {
+  user: any
+}
+
+
+export default function authMiddleware(req: IAuthRequest, res: Response, next: NextFunction) {
   try {
     // Проверяем наличие токена в заголовке запроса
     const authHeader = req.headers.authorization

@@ -11,12 +11,16 @@ import { catchErrorMiddleware } from './middleware/catchError.middleware'
 import { writeToServiceLog } from './lib/fileWrite'
 import path from 'path'
 import fs from 'fs'
-dotenv.config()
+dotenv.config({
+  path:
+    process.env.NODE_ENV === 'production'
+      ? path.resolve(__dirname, 'env', 'prod.env')
+      : path.resolve(__dirname, 'env', 'dev.env'),
+})
 const app = express()
-const PORT = process.env.SERVER_PORT || 8080
-const HOST = process.env.HOST || '0.0.0.0'
-const PROTOCOL = process.env.PROTOCOL || 'http'
-const ORIGINS = process.env.ORIGINS ? process.env.ORIGINS.split(' ') : '*'
+const PORT = process.env.SERVER_PORT || '8080'
+const HOST = process.env.SERVER_HOST || '0.0.0.0'
+const ORIGINS = process.env.ORIGIN
 
 fs.existsSync(path.resolve('uploads')) || fs.mkdirSync(path.resolve('uploads'))
 fs.existsSync(path.resolve('uploads', 'logos')) || fs.mkdirSync(path.resolve('uploads', 'logos'))
@@ -50,11 +54,10 @@ async function main() {
   const DB_HOST = process.env.DB_HOST || 'localhost'
   const DB_PORT = process.env.DB_PORT || '27017'
   const DB_CONNECTION_STRING = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authMechanism=DEFAULT&authSource=admin`
-  await mongoose.connect(DB_CONNECTION_STRING, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  app.listen(PORT, HOST, () => {
+
+  await mongoose.connect(DB_CONNECTION_STRING)
+
+  app.listen(+PORT, HOST, () => {
     writeToServiceLog(`${new Date().toUTCString()}\tserver started on port ${PORT}\n`)
     console.log(`Server listening: ${HOST} port ${PORT}/tcp`)
   })

@@ -1,30 +1,27 @@
 export default class ApiError extends Error {
-  constructor(status, message, errors = []) {
+  constructor(public status: number, public message: string, public errors?: any) {
     super(message)
-    this.status = status
-    this.message = message
-    this.errors = errors
   }
-  static Unauthorized() {
+  public static Unauthorized() {
     return new ApiError(401, 'Unauthorized')
   }
-  static Forbidden() {
+  public static Forbidden() {
     return new ApiError(403, 'Forbidden')
   }
-  static NotFound() {
+  public static NotFound() {
     return new ApiError(404, 'Not Found')
   }
-  static NoDataProvided() {
+  public static NoDataProvided() {
     return new ApiError(400, 'No data provided')
   }
-  static ValidationError(message) {
+  public static ValidationError(message: string) {
     return new ApiError(400, message)
   }
-  static InternalServerError() {
+  public static InternalServerError() {
     return new ApiError(500, 'Internal Server Error')
   }
 
-  static BadRequest(message, errors = []) {
+  public static BadRequest(message: string, errors?: any) {
     return new ApiError(400, message, errors)
   }
 }

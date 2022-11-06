@@ -1,7 +1,8 @@
+import { Request, Response } from 'express'
 import ApiError from '../error/ApiError'
 import { writeToErrorLog } from '../lib/fileWrite'
 
-export const catchErrorMiddleware = (err, req, res, next) => {
+export const catchErrorMiddleware = (err: Error, req: Request, res: Response) => {
   if (err instanceof ApiError) {
     const logPattern = `${new Date().toUTCString()} ${err.message} ${err.errors} ${req.method} ${
       req.url

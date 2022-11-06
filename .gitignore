@@ -1,5 +1,5 @@
 node_modules
-.env
+app/env/*
 logs/*.log
 uploads/*
 build/*

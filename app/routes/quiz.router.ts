@@ -7,11 +7,12 @@ import upload from '../middleware/multer.middleware'
 
 const router = Router()
 
-router.get('/', quizController.getQuizes)
-router.post('/', authMiddleware, upload.single('logo'), quizController.addQuiz)
-router.get('/my', authMiddleware, quizController.getQuizesByUserId)
-router.get('/:id', validateQuizIdMiddleware, quizController.getQuizById)
-router.put('/:id', quizController.updateQuizById)
-router.delete('/:id', authMiddleware, quizController.deleteQuizById)
+router
+  .get('/', quizController.getQuizes)
+  .post('/', authMiddleware, upload.single('logo'), quizController.addQuiz)
+  .get('/my', authMiddleware, quizController.getQuizesByUserId)
+  .get('/:id', validateQuizIdMiddleware, quizController.getQuizById)
+  .put('/:id', quizController.updateQuizById)
+  .delete('/:id', authMiddleware, quizController.deleteQuizById)
 
 export default router

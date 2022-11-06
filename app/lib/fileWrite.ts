@@ -1,20 +1,21 @@
 import fs from 'fs'
 import path from 'path'
 
-export default function writeLogToFile(pathToFile = [], logPattern = '') {
+export default function writeLogToFile(pathToFile: string[], log: string) {
   if (pathToFile.length === 0) {
     return
   }
   const copyOfPathToFile = pathToFile.slice()
   const fileName = copyOfPathToFile.pop()
+  if (!fileName) return
   const filePath = path.resolve(...copyOfPathToFile, fileName)
   try {
     const isFileExists = fs.existsSync(filePath)
     if (isFileExists) {
-      fs.appendFileSync(filePath, logPattern)
+      fs.appendFileSync(filePath, log)
     } else {
       fs.mkdirSync(path.resolve(...copyOfPathToFile), { recursive: true })
-      fs.writeFileSync(filePath, logPattern)
+      fs.writeFileSync(filePath, log)
     }
   } catch (error) {
     console.error(error)
