@@ -1,11 +1,7 @@
-import { NextFunction, Request, Response } from 'express'
+import { NextFunction, Response } from 'express'
 import ApiError from '../error/ApiError'
 import TokenService from '../services/Token.service'
-
-interface IAuthRequest extends Request {
-  user: any
-}
-
+import { IAuthRequest } from '../types/middleware/middleware.types'
 
 export default function authMiddleware(req: IAuthRequest, res: Response, next: NextFunction) {
   try {

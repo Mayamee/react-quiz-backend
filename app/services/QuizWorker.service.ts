@@ -4,13 +4,14 @@ import ApiError from '../error/ApiError'
 import { isValidObjectId } from 'mongoose'
 import path from 'path'
 import fs from 'fs'
+import { IDataQuiz } from '../types/services/quiz-service.types'
 
 class QuizService {
   async getQuizes() {
     const quizesData = await QuizModel.find()
     return quizesData.map((quiz) => new QuizDTO(quiz))
   }
-  async addQuiz({ quizTitle, quizBody, quizOwnerInfo, logoPath }) {
+  async addQuiz({ quizTitle, quizBody, quizOwnerInfo, logoPath }: IDataQuiz) {
     const quiz = await QuizModel.create({
       title: quizTitle,
       body: quizBody,
@@ -19,14 +20,14 @@ class QuizService {
     })
     return await quiz.save()
   }
-  async getQuizById(id) {
+  async getQuizById(id: string) {
     const quiz = await QuizModel.findById(id)
     if (quiz === null) {
-      throw ApiError.NotFound('Quiz not found')
+      throw ApiError.NotFound("Quiz doesn't exist")
     }
     return new QuizDTO(quiz)
   }
-  async getQuizesByUserId(id) {
+  async getQuizesByUserId(id: string) {
     if (!isValidObjectId(id)) {
       throw ApiError.BadRequest('Incorrect ObjectId')
     }
@@ -35,7 +36,7 @@ class QuizService {
     })
     return quizesData.map((quiz) => new QuizDTO(quiz))
   }
-  async checkQuizOwner(id, userId) {
+  async checkQuizOwner(id: string, userId: string) {
     if (!isValidObjectId(id)) {
       throw ApiError.BadRequest('Incorrect Quiz Id')
     }
@@ -50,7 +51,7 @@ class QuizService {
       throw ApiError.Forbidden('You are not the owner of this quiz')
     }
   }
-  async deleteQuizById(id) {
+  async deleteQuizById(id: string) {
     const quiz = await QuizModel.findById(id)
     if (quiz === null) {
       throw ApiError.NotFound('Quiz not found')

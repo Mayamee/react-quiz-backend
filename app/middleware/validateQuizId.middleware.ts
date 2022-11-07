@@ -1,17 +1,18 @@
 import { NextFunction, Response } from 'express'
 import { Types } from 'mongoose'
-
 import ApiError from '../error/ApiError'
+import { IValidateQuizIdRequest } from '../types/middleware/middleware.types'
 
-interface IValidateQuizIdRequest extends Request {
-  params: {
-    id: string
-  }
-}
 
-export default function validateQuizId(req: IValidateQuizIdRequest, res: Response, next: NextFunction) {
+export default function validateQuizId(
+  req: IValidateQuizIdRequest,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const { id } = req.params
+    if (!id) throw ApiError.BadRequest('Quiz id is not specified')
+
     if (Types.ObjectId.isValid(id)) {
       return next()
     } else {

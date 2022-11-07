@@ -5,11 +5,11 @@ export default class ApiError extends Error {
   public static Unauthorized() {
     return new ApiError(401, 'Unauthorized')
   }
-  public static Forbidden() {
-    return new ApiError(403, 'Forbidden')
+  public static Forbidden(message: string) {
+    return new ApiError(403, `Forbidden ${message}`)
   }
-  public static NotFound() {
-    return new ApiError(404, 'Not Found')
+  public static NotFound(message: string) {
+    return new ApiError(404, `Not Found: ${message}`)
   }
   public static NoDataProvided() {
     return new ApiError(400, 'No data provided')
@@ -22,6 +22,6 @@ export default class ApiError extends Error {
   }
 
   public static BadRequest(message: string, errors?: any) {
-    return new ApiError(400, message, errors)
+    return new ApiError(400, `Bad Request:  ${message}`, errors)
   }
 }

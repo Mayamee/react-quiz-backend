@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-export default function writeLogToFile(pathToFile: string[], log: string) {
+function writeLogToFile(pathToFile: string[], log: string) {
   if (pathToFile.length === 0) {
     return
   }
@@ -24,5 +24,4 @@ export default function writeLogToFile(pathToFile: string[], log: string) {
 
 export const writeToAccessLog = writeLogToFile.bind(null, ['logs', 'access.log'])
 export const writeToErrorLog = writeLogToFile.bind(null, ['logs', 'error.log'])
-
 export const writeToServiceLog = writeLogToFile.bind(null, ['logs', 'service.log'])

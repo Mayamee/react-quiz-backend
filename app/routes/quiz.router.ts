@@ -1,6 +1,5 @@
 import { Router } from 'express'
 import quizController from '../controllers/quiz.controller'
-import validateQuizObjectMiddleware from '../middleware/validateQuizObject.middleware'
 import validateQuizIdMiddleware from '../middleware/validateQuizId.middleware'
 import authMiddleware from '../middleware/auth.middleware'
 import upload from '../middleware/multer.middleware'
@@ -8,11 +7,12 @@ import upload from '../middleware/multer.middleware'
 const router = Router()
 
 router
+  .use(authMiddleware)
   .get('/', quizController.getQuizes)
-  .post('/', authMiddleware, upload.single('logo'), quizController.addQuiz)
-  .get('/my', authMiddleware, quizController.getQuizesByUserId)
+  .post('/', upload.single('logo'), quizController.addQuiz)
+  .get('/my', quizController.getQuizesByUserId)
   .get('/:id', validateQuizIdMiddleware, quizController.getQuizById)
   .put('/:id', quizController.updateQuizById)
-  .delete('/:id', authMiddleware, quizController.deleteQuizById)
+  .delete('/:id', quizController.deleteQuizById)
 
 export default router

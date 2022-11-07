@@ -1,8 +1,9 @@
 import UserService from '../services/User.service'
 import { validationResult } from 'express-validator'
 import ApiError from '../error/ApiError'
+import { NextFunction, Request, Response } from 'express'
 class AuthController {
-  async registration(req, res, next) {
+  async registration(req: Request, res: Response, next: NextFunction) {
     try {
       // Проверяем валидацию данных пролученных от клиента
       const { email, username, password } = req.body
@@ -25,7 +26,7 @@ class AuthController {
       next(error)
     }
   }
-  async login(req, res, next) {
+  async login(req: Request, res: Response, next: NextFunction) {
     try {
       // Получаем данные для аутентификации от клиента
       const { email, password } = req.body
@@ -44,7 +45,7 @@ class AuthController {
       next(error)
     }
   }
-  async logout(req, res, next) {
+  async logout(req: Request, res: Response, next: NextFunction) {
     try {
       // Получаем токен обновления для авторизации пользователя
       const { refreshToken } = req.cookies
@@ -58,7 +59,7 @@ class AuthController {
       next(error)
     }
   }
-  async activate(req, res, next) {
+  async activate(req: Request, res: Response, next: NextFunction) {
     try {
       const { link } = req.params
       const user = await UserService.activate(link)
@@ -67,7 +68,7 @@ class AuthController {
       next(error)
     }
   }
-  async refresh(req, res, next) {
+  async refresh(req: Request, res: Response, next: NextFunction) {
     try {
       // Получаем токен обновления для обновления авторизации пользователя
       const { refreshToken } = req.cookies
