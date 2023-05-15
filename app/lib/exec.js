@@ -1,4 +1,4 @@
-import { writeToServiceLog } from '../lib/fileWrite'
+import { writeToServiceLog } from '#app/lib/fileWrite'
 
 export function exec(maxRetries, repeatIn = 3000) {
   let retries = 0

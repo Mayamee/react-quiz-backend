@@ -1,12 +1,10 @@
-import ApiError from '../error/ApiError'
-import UserModel from '../models/UserModel'
-import TokenService from '../services/Token.service'
-import MailService from '../services/Mail.service'
-import UserDTO from '../dtos/UserDTO'
 import bcrypt from 'bcrypt'
 import { v4 as uuid } from 'uuid'
-import dotenv from 'dotenv'
-dotenv.config()
+import ApiError from '#app/error/ApiError'
+import UserModel from '#app/models/UserModel'
+import TokenService from '#app/services/Token.service'
+import UserDTO from '#app/dtos/UserDTO'
+import { BCRYPT_ROUNDS } from '#app/env'
 
 class UserService {
   async registration(email, username, password) {
@@ -17,7 +15,7 @@ class UserService {
       throw ApiError.BadRequest('User already exists')
     }
     // хешируем пароль (data, saltRounds)
-    const hashedPassword = await bcrypt.hash(password, +process.env.BCRYPT_ROUNDS)
+    const hashedPassword = await bcrypt.hash(password, BCRYPT_ROUNDS)
     // генерируем уникальный линк для активации
     const activationLink = uuid()
     // создаем нового пользователя и сохраняем в базе

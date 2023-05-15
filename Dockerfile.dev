@@ -1,0 +1,11 @@
+FROM node:18.16.0-slim
+LABEL maintainer="dev.ymmwmm@gmail.com"
+LABEL mode="development"
+
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install
+
+ENV MONGOURL="mongodb://mongo:27017"
+
+ENTRYPOINT [ "yarn dev" ]

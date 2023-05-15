@@ -1,4 +1,4 @@
-import ApiError from '../error/ApiError'
+import ApiError from '#app/error/ApiError'
 
 export default function validateQuizObject(quizObject) {
   const { title, body } = quizObject

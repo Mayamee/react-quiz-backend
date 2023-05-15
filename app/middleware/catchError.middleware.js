@@ -1,7 +1,7 @@
-import ApiError from '../error/ApiError'
-import { writeToErrorLog } from '../lib/fileWrite'
+import ApiError from '#app/error/ApiError'
+import { writeToErrorLog } from '#app/lib/fileWrite'
 
-export const catchErrorMiddleware = (err, req, res, next) => {
+export const catchErrorMiddleware = (err, req, res) => {
   if (err instanceof ApiError) {
     const logPattern = `${new Date().toUTCString()} ${err.message} ${err.errors} ${req.method} ${
       req.url

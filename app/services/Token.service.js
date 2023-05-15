@@ -1,16 +1,15 @@
 import JWT from 'jsonwebtoken'
-import TokenModel from '../models/TokenModel'
-import dotenv from 'dotenv'
-dotenv.config()
+import TokenModel from '#app/models/TokenModel'
+import { JWT_ACCESS_SECRET, JWT_REFRESH_SECRET } from '#app/env'
 
 class TokenService {
   async generateTokens(payload) {
     // Создаем токен доступа к приложению
-    const accessToken = JWT.sign(payload, process.env.JWT_ACCESS_SECRET, {
+    const accessToken = JWT.sign(payload, JWT_ACCESS_SECRET, {
       expiresIn: '10m',
     })
     // Создаем токен для обновления доступа к приложению
-    const refreshToken = JWT.sign(payload, process.env.JWT_REFRESH_SECRET, {
+    const refreshToken = JWT.sign(payload, JWT_REFRESH_SECRET, {
       expiresIn: '30m',
     })
     return { accessToken, refreshToken }
@@ -34,7 +33,7 @@ class TokenService {
   }
   validateRefreshToken(refreshToken) {
     try {
-      const tokenData = JWT.verify(refreshToken, process.env.JWT_REFRESH_SECRET)
+      const tokenData = JWT.verify(refreshToken, JWT_REFRESH_SECRET)
       return tokenData
     } catch (err) {
       return null
@@ -42,7 +41,7 @@ class TokenService {
   }
   validateAccessToken(accessToken) {
     try {
-      const tokenData = JWT.verify(accessToken, process.env.JWT_ACCESS_SECRET)
+      const tokenData = JWT.verify(accessToken, JWT_ACCESS_SECRET)
       return tokenData
     } catch (err) {
       return null

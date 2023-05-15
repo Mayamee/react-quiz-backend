@@ -1,6 +1,6 @@
-import QuizService from '../services/QuizWorker.service'
+import QuizService from '#app/services/QuizWorker.service'
 class QuizController {
-  async getQuizes(_req, res, next) {
+  async getQuizes(_, res, next) {
     try {
       const quizesData = await QuizService.getQuizes()
       return res.status(200).json({ status: 200, data: quizesData })
@@ -46,10 +46,6 @@ class QuizController {
     } catch (error) {
       next(error)
     }
-  }
-  async updateQuizById(req, res, next) {
-    try {
-    } catch (error) {}
   }
   async deleteQuizById(req, res, next) {
     try {
