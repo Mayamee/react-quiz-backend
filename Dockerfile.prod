@@ -1,0 +1,25 @@
+FROM node:18.16.0-buster as deps
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --production
+
+FROM node:18.16.0-buster as runner
+LABEL maintainer=dev.ymmwmm@gmail.com
+ENV NODE_ENV=production
+WORKDIR /app
+EXPOSE 8080
+
+RUN addgroup --system --gid 1001 nodejs && \
+		adduser --system --uid 1001 --gid 1001 --home /app --shell /bin/bash runner && \
+		chown -R runner:nodejs /app
+COPY --from=deps --chown=runner:nodejs /app/node_modules ./node_modules
+COPY --chown=runner:nodejs ./package.json ./yarn.lock ./
+COPY --chown=runner:nodejs ./app ./app
+
+USER runner
+
+ENV HOST=0.0.0.0
+ENV PORT=8080
+ENV DB_CONNECTION_STRING="mongodb://quiz:quiz@localhost:27017/quiz?authMechanism=DEFAULT&authSource=admin"
+
+CMD [ "yarn", "start" ]

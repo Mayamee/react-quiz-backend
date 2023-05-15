@@ -5,19 +5,18 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=quiz
       - MONGO_INITDB_ROOT_PASSWORD=quiz
-    ports:
-      - 27017:27017
   api:
     build: 
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.prod
     image: mew1307/quiz-api:latest
     ports:
       - 8080:8080/tcp
-    volumes:
-      - ./app:/app/app
     environment:
       DB_CONNECTION_STRING: mongodb://quiz:quiz@mongodb:27017/quiz?authMechanism=DEFAULT&authSource=admin
       PORT: 8080
       APP_URL: http://localhost:8080
+    volumes:
+      - ./logs:/app/logs:rw
+      - ./uploads:/app/uploads:rw
     depends_on:
       - mongodb
