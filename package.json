@@ -19,6 +19,7 @@
   "scripts": {
     "start": "node app/index.js",
     "dev": "nodemon app/index.js",
+    "docker:dev": "nodemon --legacy-watch app/index.js",
     "pretty": "prettier --write ."
   },
   "devDependencies": {

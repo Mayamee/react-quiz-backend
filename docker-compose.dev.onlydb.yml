@@ -1,6 +1,6 @@
 version: "3.5"
 services:
-  app-db:
+  mongodb:
     image: mongo:6.0
     environment:
       - MONGO_INITDB_ROOT_USERNAME=quiz

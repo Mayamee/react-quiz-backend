@@ -8,7 +8,6 @@ import { exec } from '#app/lib/exec'
 import { loggerMiddleware } from '#app/middleware/logger.middleware'
 import quizRouter from '#app/routes/quiz.router'
 import authRouter from '#app/routes/auth.router'
-import { writeToServiceLog } from '#app/lib/fileWrite'
 import { catchErrorMiddleware } from '#app/middleware/catchError.middleware'
 import { DB_CONNECTION_STRING, PORT, ORIGINS, HOST } from '#app/env'
 
@@ -29,7 +28,6 @@ app.use(cookieParser())
 app.use(loggerMiddleware)
 
 app.use('/api/quiz', quizRouter)
-
 app.use('/api/auth', authRouter)
 app.use('*', (_req, res) => {
   res.status(404).json({ data: 'Not found' })
@@ -44,7 +42,6 @@ async function main() {
     useUnifiedTopology: true,
   })
   app.listen(PORT, HOST, () => {
-    writeToServiceLog(`Server listening: ${HOST} port ${PORT}/tcp`)
     console.log(`Server listening: ${HOST} port ${PORT}/tcp`)
   })
 }

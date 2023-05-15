@@ -1,10 +1,10 @@
 import multer from 'multer'
 import { v4 } from 'uuid'
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (_req, _file, cb) => {
     cb(null, 'uploads/logos')
   },
-  filename: (req, file, cb) => {
+  filename: (_req, file, cb) => {
     cb(null, `${v4()}-${file.originalname}`)
   },
 })

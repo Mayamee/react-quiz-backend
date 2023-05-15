@@ -1,11 +1,15 @@
-FROM node:18.16.0-slim
+FROM node:18.16.0-buster
 LABEL maintainer="dev.ymmwmm@gmail.com"
-LABEL mode="development"
 
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install
+RUN yarn install && yarn cache clean
 
-ENV MONGOURL="mongodb://mongo:27017"
+EXPOSE 8080
 
-ENTRYPOINT [ "yarn dev" ]
+ENV NODE_ENV=development
+ENV DB_CONNECTION_STRING="mongodb://admin:admin@localhost:27017/quiz?authMechanism=DEFAULT&authSource=admin"
+ENV PORT=8080
+ENV HOST=0.0.0.0
+
+CMD [ "yarn", "docker:dev" ]

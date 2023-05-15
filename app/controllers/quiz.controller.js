@@ -37,6 +37,7 @@ class QuizController {
     }
   }
   async getQuizesByUserId(req, res, next) {
+    console.log('kek')
     try {
       const {
         user: { id },
