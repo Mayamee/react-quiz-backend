@@ -13,6 +13,7 @@ services:
       - 8080:8080/tcp
     environment:
       DB_CONNECTION_STRING: mongodb://quiz:quiz@mongodb:27017/quiz?authMechanism=DEFAULT&authSource=admin
+      ORIGINS: http://localhost:3000,http://localhost:8080
       PORT: 8080
       APP_URL: http://localhost:8080
     volumes:
